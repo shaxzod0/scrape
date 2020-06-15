@@ -12,7 +12,6 @@ for i in range(0, 483,7):
         title = post.find('h2').text.strip()
         date = post.find('dd',class_='published').text.strip()
         url = 'http://agronews.uz'+post.find('h2').find('a').get('href')
-        smallInfo = post.find('span').text
         body = requests.get(url)
         inner_soup = BeautifulSoup(body.text, 'html.parser')
         article = inner_soup.find('span').text
@@ -20,7 +19,6 @@ for i in range(0, 483,7):
             'title': title,
             'date': date,
             'url': url,
-            'smallInfo': smallInfo,
             'article': article
         }
         with open('data.json', 'a', encoding='utf-8') as file:
